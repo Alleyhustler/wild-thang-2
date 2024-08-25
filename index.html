@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Images Website</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #000; /* Background color */
+        }
+
+        /* Center image styling */
+        .center-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 2;
+            position: relative;
+        }
+
+        .center-image img {
+            max-width: 400px;
+            height: auto;
+        }
+
+        /* Floating images */
+        .floating-image {
+            position: absolute;
+            width: 50px; /* Adjust the size of the floating images */
+            height: 50px;
+            animation: floatUp 8s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(10vh); /* Start closer to the bottom, instead of outside the viewport */
+            }
+            100% {
+                transform: translateY(-100vh); /* End at the top */
+            }
+        }
+
+        /* Social media icons */
+        .social-icons {
+            position: absolute;
+            z-index: 3;
+        }
+
+        .social-icons.twitter {
+            top: 10px;
+            left: 10px;
+        }
+
+        .social-icons.telegram {
+            top: 10px;
+            right: 10px;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Social Media Icons -->
+    <div class="social-icons twitter">
+        <a href="https://x.com/GURD_SOL" target="_blank">
+            <img src="twitter.png" alt="Twitter">
+        </a>
+    </div>
+    <div class="social-icons telegram">
+        <a href="https://t.me/+UyelI2AgnS9kYTdk" target="_blank">
+            <img src="telegram.png" alt="Telegram">
+        </a>
+    </div>
+
+    <!-- Center Image -->
+    <div class="center-image">
+        <img src="gurd.jpg" alt="Centered Image">
+    </div>
+
+    <!-- Floating Images Container -->
+    <script>
+        // Number of floating images
+        const numImages = 50; // Adjust the number of floating images
+        const floatingImageSrc = 'ip.jpg'; // Path to the floating image
+        
+        // Create floating images
+        for (let i = 0; i < numImages; i++) {
+            let img = document.createElement('img');
+            img.src = floatingImageSrc;
+            img.className = 'floating-image';
+            
+            // Random positioning
+            img.style.left = Math.random() * 100 + 'vw';
+            img.style.animationDuration = (5 + Math.random() * 5) + 's'; // Random speed
+            
+            document.body.appendChild(img);
+        }
+    </script>
+
+</body>
+</html>
